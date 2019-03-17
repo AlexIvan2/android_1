@@ -7,12 +7,32 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final int COLOR_CONST = 256;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        changeBackgroundColor();
+    }
+
+    private void changeBackgroundColor() {
+        RelativeLayout relativeLayout = findViewById(R.id.main_layout);
+        if (relativeLayout == null) {
+            return;
+        }
+        relativeLayout.setBackgroundColor(Color.rgb(getNewColor(),
+                getNewColor(),
+                getNewColor()));
+    }
+
+    private int getNewColor() {
+        Random rnd = new Random();
+        return rnd.nextInt(COLOR_CONST);
     }
 
     @Override

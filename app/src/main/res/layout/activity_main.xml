@@ -11,13 +11,14 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FF00">
+        android:background="@color/red">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/text"
-            android:onClick="onButtonClick"/>
+            android:onClick="onButtonClick"
+            android:background="@color/green"/>
         <TextView
             android:id="@+id/main_text_view"
             android:layout_width="wrap_content"
