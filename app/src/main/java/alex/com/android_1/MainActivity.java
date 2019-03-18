@@ -1,5 +1,6 @@
 package alex.com.android_1;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mainLayout.setBackgroundColor(Color.BLACK);
+
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
 
     }
 }
