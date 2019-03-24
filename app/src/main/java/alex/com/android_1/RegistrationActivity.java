@@ -1,10 +1,10 @@
 package alex.com.android_1;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -13,6 +13,7 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         View view = findViewById(R.id.registration_header);
         ImageButton headerBackBtn = view.findViewById(R.id.header_back);
