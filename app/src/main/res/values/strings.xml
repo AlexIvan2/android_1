@@ -4,4 +4,16 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="registration_form">Registration form</string>
+    <string name="registration_first_name">First Name</string>
+    <string name="registration_last_name">Last Name</string>
+    <string name="registration_age">Age</string>
+    <string name="registration_submit">Submit</string>
+    <string name="registration_preferred_day_of_the_week">Preferred day of the week</string>
+    <string name="registration_monday">Monday</string>
+    <string name="registration_wednesday">Wednesday</string>
+    <string name="registration_friday">Friday</string>
+    <string name="registration_agree_to_terms">Agree to Terms</string>
+    <string name="empty_email_error">Email is empty</string>
+    <string name="empty_password_error">Password is empty</string>
 </resources>

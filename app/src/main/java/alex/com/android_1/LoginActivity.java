@@ -1,10 +1,16 @@
 package alex.com.android_1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.apache.commons.lang3.StringUtils;
+
+import java.time.Instant;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -21,10 +27,14 @@ public class LoginActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
 
-        new AlertDialog.Builder(this)
-                .setTitle("Info")
-                .setMessage("Email: " +  password)
-                .setCancelable(true)
-                .show();
+        if (StringUtils.isEmpty(email)) {
+            Toast.makeText(LoginActivity.this, getString(R.string.empty_email_error), Toast.LENGTH_LONG).show();
+        } else if (StringUtils.isEmpty(password)) {
+            Toast.makeText(LoginActivity.this, getString(R.string.empty_password_error), Toast.LENGTH_LONG).show();
+        } else {
+            Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+            startActivity(intent);
+        }
+
     }
 }

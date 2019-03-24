@@ -4,4 +4,16 @@
     <string name="email">Почтовый ящик</string>
     <string name="password">Пароль</string>
     <string name="login">Вход</string>
+    <string name="registration_form">Форма регистрации</string>
+    <string name="registration_first_name">Имя</string>
+    <string name="registration_last_name">Фамилия</string>
+    <string name="registration_age">Возраст</string>
+    <string name="registration_submit">Отправить</string>
+    <string name="registration_preferred_day_of_the_week">Предпочитаемый день недели</string>
+    <string name="registration_monday">Понедельник</string>
+    <string name="registration_wednesday">Среда</string>
+    <string name="registration_friday">Пятница</string>
+    <string name="registration_agree_to_terms">Условия соглашения</string>
+    <string name="empty_email_error">Почтовый ящик отсутствует</string>
+    <string name="empty_password_error">Пароль отсутствует</string>
 </resources>

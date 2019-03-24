@@ -6,4 +6,5 @@
     <color name="green">#2af50b</color>
     <color name="red">#FF00</color>
     <color name="grey">#DFDBDB</color>
+    <color name="header_color">#c6c6c6</color>
 </resources>

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainLayout.setBackgroundColor(Color.BLACK);
 
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, LoginActivity2.class);
         startActivity(intent);
 
     }
