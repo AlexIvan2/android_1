@@ -16,4 +16,14 @@
     <string name="registration_agree_to_terms">Agree to Terms</string>
     <string name="empty_email_error">Email is empty</string>
     <string name="empty_password_error">Password is empty</string>
+
+    <string-array name="car_types">
+        <item>Truck</item>
+        <item>Sedan</item>
+        <item>Van</item>
+        <item>Coupe</item>
+        <item>Wagon</item>
+        <item>Convertible</item>
+        <item>Crossover</item>
+    </string-array>
 </resources>

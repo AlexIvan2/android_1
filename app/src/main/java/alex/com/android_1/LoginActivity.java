@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (StringUtils.isEmpty(password)) {
             Toast.makeText(LoginActivity.this, getString(R.string.empty_password_error), Toast.LENGTH_LONG).show();
         } else {
-            Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+            Intent intent = new Intent(LoginActivity.this, CatalogActivity.class);
             startActivity(intent);
         }
 
