@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class GridViewAdapter extends ArrayAdapter {
@@ -32,15 +34,16 @@ public class GridViewAdapter extends ArrayAdapter {
 
         CatalogViewHolder catalogViewHolder = (CatalogViewHolder) convertView.getTag();
         if (catalogViewHolder == null) {
-            catalogViewHolder = new CatalogViewHolder();
+            catalogViewHolder = new CatalogViewHolder(convertView);
 
-            catalogViewHolder.itemViewImage = convertView.findViewById(R.id.carImage);
-            catalogViewHolder.itemViewName = convertView.findViewById(R.id.carName);
             convertView.setTag(catalogViewHolder);
         }
+
         CarObject carObject = (CarObject) data.get(position);
-        catalogViewHolder.itemViewImage.setImageDrawable(carObject.getImage());
-        catalogViewHolder.itemViewName.setText(carObject.getName());
+        PhotoItem photoItem = (PhotoItem) data.get(position);
+        Picasso.get().load(photoItem.getImgUrl()).into(catalogViewHolder.itemViewImage);
+//        .setImageDrawable(carObject.getImage());
+//        catalogViewHolder.itemViewName.setText(carObject.getName());
         return convertView;
     }
 }
