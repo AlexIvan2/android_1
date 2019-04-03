@@ -2,27 +2,14 @@ package alex.com.android_1;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import alex.com.android_1.http.CatalogService;
+import alex.com.android_1.http.Listener;
 
 
 public class CatalogActivity extends AppCompatActivity {
@@ -32,47 +19,11 @@ public class CatalogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 
-        getPhotoItems();
+        CatalogService service = new CatalogService();
+        Listener listener = new Listener();
+        service.registerCallBackListener(listener);
+        runOnUiThread(() -> showPhotoItems(service.getPhotoItems()));
 
-    }
-
-    @NonNull
-    private void getPhotoItems() {
-
-        OkHttpClient client = new OkHttpClient();
-
-        final List<PhotoItem> photoItems = new ArrayList<>();
-
-        Request request = new Request.Builder()
-                .url("https://api.unsplash.com/photos/?client_id=311ed690d7678d20b8ce556e56d5bf168d6ddf9fa1126e58193d95089d796542")
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final Gson gson = new Gson();
-                String jsonData = response.body() != null ? response.body().string() : null;
-                try {
-                    JSONArray array = new JSONArray(jsonData);
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject imgObject = array.getJSONObject(i);
-                        PhotoItem item = gson.fromJson(imgObject.toString(), PhotoItem.class);
-                        photoItems.add(item);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                runOnUiThread(() -> showPhotoItems(photoItems));
-            }
-
-
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-        });
     }
 
     private void setOnTouchListener(GridView view) {
