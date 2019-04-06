@@ -29,7 +29,7 @@ public class GridViewAdapter extends ArrayAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            convertView = inflater.inflate(R.layout.car_item, null, false);
+            convertView = inflater.inflate(layoutResourceId, null, false);
         }
 
         CatalogViewHolder catalogViewHolder = (CatalogViewHolder) convertView.getTag();

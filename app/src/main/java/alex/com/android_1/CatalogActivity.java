@@ -8,22 +8,20 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import alex.com.android_1.http.CatalogService;
-import alex.com.android_1.http.Listener;
+import alex.com.android_1.http.NetworkResultListener;
+import alex.com.android_1.http.NetworkingManager;
+import alex.com.android_1.http.UnsplashNetworkingManager;
 
 
-public class CatalogActivity extends AppCompatActivity {
+public class CatalogActivity extends AppCompatActivity implements NetworkResultListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 
-        CatalogService service = new CatalogService();
-        Listener listener = new Listener();
-        service.registerCallBackListener(listener);
-        runOnUiThread(() -> showPhotoItems(service.getPhotoItems()));
-
+        NetworkingManager networkingManager = new UnsplashNetworkingManager(this);
+        networkingManager.getPhotoItems();
     }
 
     private void setOnTouchListener(GridView view) {
@@ -37,59 +35,15 @@ public class CatalogActivity extends AppCompatActivity {
     }
 
     public void showPhotoItems(List<PhotoItem> items) {
-
         GridView resultView = findViewById(R.id.catalogView);
-
         GridViewAdapter adapter = new GridViewAdapter(this, R.layout.car_item, items);
-
         resultView.setAdapter(adapter);
         setOnTouchListener(resultView);
 
     }
 
-//
-//    @NonNull
-//    private List<PhotoItem> getPhotoItems() {
-//
-//        OkHttpClient client = new OkHttpClient();
-//
-//        final List<PhotoItem> photoItems = new ArrayList<>();
-//
-//        Request request = new Request.Builder()
-//                .url("https://api.unsplash.com/photos/?client_id=311ed690d7678d20b8ce556e56d5bf168d6ddf9fa1126e58193d95089d796542")
-//                .build();
-//
-//        client.newCall(request).enqueue(new Callback() {
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                final Gson gson = new Gson();
-//                String jsonData = response.body() != null ? response.body().string() : null;
-//                try {
-//                    JSONArray array = new JSONArray(jsonData);
-//                    for (int i = 0 ; i < array.length() ; i++) {
-//                        JSONObject imgObject = array.getJSONObject(i);
-//                        PhotoItem item = gson.fromJson(imgObject.toString(), PhotoItem.class);
-//                        photoItems.add(item);
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                runOnUiThread(() -> showPhotoItems(photoItems));
-//            }
-//
-//
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//
-//            }
-//        });
-//
-//        Resources res = getResources();
-//        final List<String> carsNameArray = Arrays.asList(res.getStringArray(R.array.car_types));
-//        return carsNameArray.stream().map(carName ->
-//                new CarObject(getResources().getDrawable(this.getResources().getIdentifier(carName.toLowerCase(), "drawable", getPackageName()), null), carName))
-//                .collect(Collectors.toList());
-//    }
+    @Override
+    public void onPhotoItemsCompleteCallback(List<PhotoItem> photoItems) {
+        runOnUiThread(() -> showPhotoItems(photoItems));
+    }
 }

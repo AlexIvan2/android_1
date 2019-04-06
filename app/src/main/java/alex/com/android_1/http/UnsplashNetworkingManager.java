@@ -12,33 +12,28 @@ import java.util.List;
 
 import alex.com.android_1.PhotoItem;
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class Listener implements BaseCallBack {
+public class UnsplashNetworkingManager implements NetworkingManager, Callback {
 
     private List<PhotoItem> photoItems = new ArrayList<>();
+    NetworkResultListener resultListener;
 
-    public List<PhotoItem> getPhotoItems() {
-        return photoItems;
+    public UnsplashNetworkingManager(NetworkResultListener resultListener) {
+        this.resultListener = resultListener;
     }
 
     @Override
-    public List<PhotoItem> doJob() {
+    public void getPhotoItems() {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
                 .url("https://api.unsplash.com/photos/?client_id=311ed690d7678d20b8ce556e56d5bf168d6ddf9fa1126e58193d95089d796542")
                 .build();
         client.newCall(request).enqueue(this);
-
-        return photoItems;
-    }
-
-    @Override
-    public void onFailure(Call call, IOException e) {
-
     }
 
     @Override
@@ -52,8 +47,17 @@ public class Listener implements BaseCallBack {
                 PhotoItem item = gson.fromJson(imgObject.toString(), PhotoItem.class);
                 photoItems.add(item);
             }
+
+            if(this.resultListener != null) {
+                this.resultListener.onPhotoItemsCompleteCallback(photoItems);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onFailure(Call call, IOException e) {
+
     }
 }
