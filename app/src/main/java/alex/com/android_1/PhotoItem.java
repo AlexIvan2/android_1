@@ -15,9 +15,14 @@ public class PhotoItem {
         return user.name;
     }
 
+    public String getLocation() {
+        return user.location;
+    }
+
     private class User {
 
         private String name;
+        private String location;
 
     }
 

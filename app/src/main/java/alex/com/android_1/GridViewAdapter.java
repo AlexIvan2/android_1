@@ -24,6 +24,10 @@ public class GridViewAdapter extends ArrayAdapter {
         this.data = data;
     }
 
+    public List getData() {
+        return data;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -39,9 +43,10 @@ public class GridViewAdapter extends ArrayAdapter {
             convertView.setTag(catalogViewHolder);
         }
 
-        CarObject carObject = (CarObject) data.get(position);
         PhotoItem photoItem = (PhotoItem) data.get(position);
         Picasso.get().load(photoItem.getImgUrl()).into(catalogViewHolder.itemViewImage);
+        catalogViewHolder.itemViewName.setText(photoItem.getUser());
+        catalogViewHolder.itemViewLocation.setText(photoItem.getLocation());
 //        .setImageDrawable(carObject.getImage());
 //        catalogViewHolder.itemViewName.setText(carObject.getName());
         return convertView;

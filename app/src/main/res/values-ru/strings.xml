@@ -16,4 +16,7 @@
     <string name="registration_agree_to_terms">Условия соглашения</string>
     <string name="empty_email_error">Почтовый ящик отсутствует</string>
     <string name="empty_password_error">Пароль отсутствует</string>
+
+    <string name="topPhotos" translatable="false">https://api.unsplash.com/photos/?client_id=311ed690d7678d20b8ce556e56d5bf168d6ddf9fa1126e58193d95089d796542</string>
+
 </resources>

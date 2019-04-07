@@ -9,8 +9,9 @@ import butterknife.ButterKnife;
 
 public class CatalogViewHolder {
 
-    @BindView(R.id.carImage) ImageView itemViewImage;
-    @BindView(R.id.carName) TextView itemViewName;
+    @BindView(R.id.photoImage) ImageView itemViewImage;
+    @BindView(R.id.photoName) TextView itemViewName;
+    @BindView(R.id.photoLocation) TextView itemViewLocation;
 
     public CatalogViewHolder(View view) {
         ButterKnife.bind(this, view);

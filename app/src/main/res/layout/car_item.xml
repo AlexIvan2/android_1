@@ -6,16 +6,34 @@
     android:orientation="vertical">
     
     <ImageView
-        android:id="@+id/carImage"
+        android:id="@+id/photoImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="center" />
-    
-    <TextView
-        android:id="@+id/carName"
+
+    <LinearLayout
+        android:id="@+id/infoBlock"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/grey"
-        android:textSize="20sp"/>
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/photoName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@color/grey"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/photoLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:gravity="end"
+            android:layout_marginEnd="10dp"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 </LinearLayout>
