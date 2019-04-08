@@ -1,4 +1,4 @@
-package alex.com.android_1.http;
+package alex.com.android_1.dataSources.unsplash;
 
 import com.google.gson.Gson;
 
@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import alex.com.android_1.PhotoItem;
+import alex.com.android_1.interfaces.NetworkResultListener;
+import alex.com.android_1.interfaces.NetworkingManager;
+import alex.com.android_1.interfaces.PhotoItem;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -20,14 +22,15 @@ import okhttp3.Response;
 public class UnsplashNetworkingManager implements NetworkingManager, Callback {
 
     private List<PhotoItem> photoItems = new ArrayList<>();
-    NetworkResultListener resultListener;
+    private NetworkResultListener resultListener;
+    private String URL;
 
     public UnsplashNetworkingManager(NetworkResultListener resultListener) {
         this.resultListener = resultListener;
     }
 
     @Override
-    public void getPhotoItems() {
+    public void getImages() {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -44,7 +47,7 @@ public class UnsplashNetworkingManager implements NetworkingManager, Callback {
             JSONArray array = new JSONArray(jsonData);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject imgObject = array.getJSONObject(i);
-                PhotoItem item = gson.fromJson(imgObject.toString(), PhotoItem.class);
+                PhotoItemUnsplash item = gson.fromJson(imgObject.toString(), PhotoItemUnsplash.class);
                 photoItems.add(item);
             }
 

@@ -1,4 +1,4 @@
-package alex.com.android_1;
+package alex.com.android_1.presenters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,10 @@ import android.widget.ArrayAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import alex.com.android_1.CatalogViewHolder;
+import alex.com.android_1.dataSources.unsplash.PhotoItemUnsplash;
+import alex.com.android_1.interfaces.PhotoItem;
 
 public class GridViewAdapter extends ArrayAdapter {
 
@@ -45,8 +49,8 @@ public class GridViewAdapter extends ArrayAdapter {
 
         PhotoItem photoItem = (PhotoItem) data.get(position);
         Picasso.get().load(photoItem.getImgUrl()).into(catalogViewHolder.itemViewImage);
-        catalogViewHolder.itemViewName.setText(photoItem.getUser());
-        catalogViewHolder.itemViewLocation.setText(photoItem.getLocation());
+        catalogViewHolder.itemViewName.setText(photoItem.getUserName());
+//        catalogViewHolder.itemViewLocation.setText(photoItem.getLocation());
 //        .setImageDrawable(carObject.getImage());
 //        catalogViewHolder.itemViewName.setText(carObject.getName());
         return convertView;
