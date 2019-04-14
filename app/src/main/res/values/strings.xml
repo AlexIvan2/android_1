@@ -18,6 +18,8 @@
     <string name="empty_password_error">Password is empty</string>
 
     <string name="topPhotos">https://api.unsplash.com/photos/?client_id=311ed690d7678d20b8ce556e56d5bf168d6ddf9fa1126e58193d95089d796542</string>
+    <string name="gifs">Gifs</string>
+    <string name="photos">Photos</string>
 
     <string-array name="car_types">
         <item>Truck</item>

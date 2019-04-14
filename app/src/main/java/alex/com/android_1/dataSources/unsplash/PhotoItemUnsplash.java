@@ -20,14 +20,15 @@ public class PhotoItemUnsplash implements PhotoItem {
 
     }
 
-//    public String getLocation() {
-//        return user.location;
-//    }
+    @Override
+    public String getLocation() {
+        return user.location;
+    }
 
-    private class User {
+    class User {
 
-        private String name;
-//        private String location;
+        String name;
+        String location;
 
     }
 

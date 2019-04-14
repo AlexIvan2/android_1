@@ -7,4 +7,6 @@
     <color name="red">#FF00</color>
     <color name="grey">#DFDBDB</color>
     <color name="header_color">#c6c6c6</color>
+    <color name="gifsBtnTextColor">#ff6702</color>
+    <color name="photosBtnTextColor">#0dff3d</color>
 </resources>

@@ -1,4 +1,4 @@
-package alex.com.android_1.presenters;
+package alex.com.android_1.catalog;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,17 +11,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import alex.com.android_1.CatalogViewHolder;
-import alex.com.android_1.dataSources.unsplash.PhotoItemUnsplash;
+import alex.com.android_1.catalog.CatalogViewHolder;
 import alex.com.android_1.interfaces.PhotoItem;
 
-public class GridViewAdapter extends ArrayAdapter {
+public class ViewAdapter extends ArrayAdapter {
 
     private Context context;
     private int layoutResourceId;
     private List data;
 
-    public GridViewAdapter(Context context, int layoutResourceId, List data) {
+    public ViewAdapter(Context context, int layoutResourceId, List data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -50,7 +49,7 @@ public class GridViewAdapter extends ArrayAdapter {
         PhotoItem photoItem = (PhotoItem) data.get(position);
         Picasso.get().load(photoItem.getImgUrl()).into(catalogViewHolder.itemViewImage);
         catalogViewHolder.itemViewName.setText(photoItem.getUserName());
-//        catalogViewHolder.itemViewLocation.setText(photoItem.getLocation());
+        catalogViewHolder.itemViewLocation.setText(photoItem.getLocation());
 //        .setImageDrawable(carObject.getImage());
 //        catalogViewHolder.itemViewName.setText(carObject.getName());
         return convertView;

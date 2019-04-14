@@ -1,9 +1,10 @@
-package alex.com.android_1;
+package alex.com.android_1.catalog;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import alex.com.android_1.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

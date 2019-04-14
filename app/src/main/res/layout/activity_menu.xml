@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#000000">
+
+        <Button
+            android:id="@+id/PhotosBtn"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/background_bnt_gradient_orange"
+            android:textSize="50sp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/photosBtnTextColor"
+            android:text="@string/photos"
+            android:onClick="onPhotosClick"/>
+
+        <Button
+            android:id="@+id/GifsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/background_bnt_gradient_purple"
+            android:textSize="50sp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:textColor="@color/gifsBtnTextColor"
+            android:text="@string/gifs"
+            android:onClick="onGifsClick"/>
+    </LinearLayout>
+
+</LinearLayout>
