@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -47,7 +48,8 @@ public class ViewAdapter extends ArrayAdapter {
         }
 
         PhotoItem photoItem = (PhotoItem) data.get(position);
-        Picasso.get().load(photoItem.getImgUrl()).into(catalogViewHolder.itemViewImage);
+//        Picasso.get().load(photoItem.getImgUrl()).into(catalogViewHolder.itemViewImage);
+        Glide.with(convertView).load(photoItem.getImgUrl()).into(catalogViewHolder.itemViewImage);
         catalogViewHolder.itemViewName.setText(photoItem.getUserName());
         catalogViewHolder.itemViewLocation.setText(photoItem.getLocation());
 //        .setImageDrawable(carObject.getImage());
