@@ -28,7 +28,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".catalog.CatalogGridViewActivity" />
         <activity android:name=".catalog.CatalogListViewActivity" />
-        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".ShareActivity" />
+        <activity android:name=".ShareActivityWithFragment"></activity>
     </application>
 
 </manifest>

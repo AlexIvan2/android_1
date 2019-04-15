@@ -12,15 +12,17 @@ import alex.com.android_1.R;
 import alex.com.android_1.interfaces.PhotoItem;
 import alex.com.android_1.interfaces.PhotoItemsPresenter;
 import alex.com.android_1.catalog.ViewAdapter;
+import alex.com.android_1.interfaces.PhotoItemsPresenterCallback;
 
 public class PhotoItemsPresenterGridView implements PhotoItemsPresenter {
 
     @Override
-    public void showPhotoItems(Activity activity, List<PhotoItem> photoItemUnsplashList) {
+    public void showPhotoItems(Activity activity, List<PhotoItem> photoItemUnsplashList, PhotoItemsPresenterCallback callback) {
         GridView resultView = activity.findViewById(R.id.catalogGridView);
         ViewAdapter adapter = new ViewAdapter(activity, R.layout.photo_item, photoItemUnsplashList);
         resultView.setAdapter(adapter);
         setOnTouchListener(activity, resultView);
+        resultView.setOnItemClickListener((parent, view, position, id) -> callback.onItemSelected(photoItemUnsplashList.get(position)));
     }
 
     private void setOnTouchListener(Activity activity, GridView view) {

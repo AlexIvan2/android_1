@@ -1,6 +1,8 @@
 package alex.com.android_1.interfaces;
 
-public interface PhotoItem {
+import java.io.Serializable;
+
+public interface PhotoItem extends Serializable {
 
     String getImgUrl();
     String getUserName();

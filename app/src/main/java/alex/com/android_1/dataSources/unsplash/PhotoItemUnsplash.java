@@ -1,5 +1,6 @@
 package alex.com.android_1.dataSources.unsplash;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import alex.com.android_1.interfaces.PhotoItem;
@@ -25,7 +26,7 @@ public class PhotoItemUnsplash implements PhotoItem {
         return user.location;
     }
 
-    class User {
+    class User implements Serializable {
 
         String name;
         String location;
