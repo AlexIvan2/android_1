@@ -7,11 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 import alex.com.android_1.interfaces.PhotoItem;
 
 @SuppressLint("Registered")
-public class BaseActivity extends Activity {
+public class BaseActivity extends AppCompatActivity {
 
     private static String TEXT_VIEW_DATA_KEY = "TEXT_VIEW_DATA_KEY";
     private static String PHOTO_ITEM_KEY = "PHOTO_ITEM_KEY";

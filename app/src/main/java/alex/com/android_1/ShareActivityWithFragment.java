@@ -1,12 +1,14 @@
 package alex.com.android_1;
 
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import alex.com.android_1.fragments.InfoFragment;
 import alex.com.android_1.fragments.ShareFragment;
 
-public class ShareActivityWithFragment extends BaseActivity {
+public class ShareActivityWithFragment extends BaseActivity implements ShareFragment.ShareFragmentListener, InfoFragment.InfoFragmentListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,21 +20,49 @@ public class ShareActivityWithFragment extends BaseActivity {
 
     private void showShareFragment() {
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
         ShareFragment fragment = new ShareFragment();
         fragment.photoItem = this.photoItem;
-        fragment.callback = () -> showInfoFragment();
         ft.replace(R.id.frameLayout, fragment);
+        ft.addToBackStack(null);
         ft.commit();
 
     }
+
     private void showInfoFragment() {
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
         InfoFragment fragment = new InfoFragment();
+        fragment.photoItem = this.photoItem;
         ft.replace(R.id.frameLayout, fragment);
+        ft.addToBackStack(null);
         ft.commit();
 
     }
+
+    @Override
+    public void onInfoPress() {
+        showInfoFragment();
+    }
+
+    @Override
+    public void onClosePress() {
+        showShareFragment();
+    }
+
+    @Override
+    public void onSharePress() {
+        // Create intent with action
+        Intent i = new Intent(Intent.ACTION_SEND);
+        // Set additions
+        i.setType("text/plain");
+        i.putExtra(Intent.EXTRA_SUBJECT, "Sharing URL");
+        i.putExtra(Intent.EXTRA_TEXT, photoItem.getImgUrl());
+        // Start intent
+        startActivity(Intent.createChooser(i, "Share URL"));
+    }
+
+
 }
