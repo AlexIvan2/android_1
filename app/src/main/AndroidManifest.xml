@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,12 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity2" />
         <activity
             android:name=".RegistrationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".catalog.CatalogGridViewActivity" />
-        <activity android:name=".catalog.CatalogListViewActivity" />
+        <!--<activity android:name=".catalog.CatalogListViewActivity" />-->
         <activity android:name=".MenuActivity" />
         <activity android:name=".ShareActivity" />
         <activity android:name=".ShareActivityWithFragment"></activity>

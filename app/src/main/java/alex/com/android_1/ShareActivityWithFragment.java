@@ -2,8 +2,10 @@ package alex.com.android_1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 
 import alex.com.android_1.fragments.InfoFragment;
 import alex.com.android_1.fragments.ShareFragment;
@@ -20,14 +22,13 @@ public class ShareActivityWithFragment extends BaseActivity implements ShareFrag
 
     private void showShareFragment() {
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-
         ShareFragment fragment = new ShareFragment();
         fragment.photoItem = this.photoItem;
-        ft.replace(R.id.frameLayout, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayout, fragment)
+                .commit();
     }
 
     private void showInfoFragment() {
@@ -37,7 +38,6 @@ public class ShareActivityWithFragment extends BaseActivity implements ShareFrag
         InfoFragment fragment = new InfoFragment();
         fragment.photoItem = this.photoItem;
         ft.replace(R.id.frameLayout, fragment);
-        ft.addToBackStack(null);
         ft.commit();
 
     }

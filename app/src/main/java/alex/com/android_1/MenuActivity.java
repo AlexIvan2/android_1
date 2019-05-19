@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import alex.com.android_1.catalog.CatalogGridViewActivity;
-import alex.com.android_1.catalog.CatalogListViewActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -22,8 +21,8 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
-    public void onGifsClick(View view) {
-        Intent intent = new Intent(MenuActivity.this, CatalogListViewActivity.class);
-        startActivity(intent);
-    }
+//    public void onGifsClick(View view) {
+//        Intent intent = new Intent(MenuActivity.this, CatalogListViewActivity.class);
+//        startActivity(intent);
+//    }
 }

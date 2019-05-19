@@ -2,7 +2,7 @@ package alex.com.android_1.interfaces;
 
 import java.util.List;
 
-public interface NetworkResultListener {
+public interface NetworkingResultListener {
 
     void onPhotoItemsCompleteCallback(List<PhotoItem> photoItems);
 

@@ -26,6 +26,21 @@ public class PhotoItemUnsplash implements PhotoItem {
         return user.location;
     }
 
+    @Override
+    public void saveToDatabase() {
+
+    }
+
+    @Override
+    public void deleteFromDatabase() {
+
+    }
+
+    @Override
+    public boolean isSavedToDatabase() {
+        return false;
+    }
+
     class User implements Serializable {
 
         String name;

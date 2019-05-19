@@ -8,4 +8,8 @@ public interface PhotoItem extends Serializable {
     String getUserName();
     String getLocation();
 
+    // ORM
+    void saveToDatabase();
+    void deleteFromDatabase();
+    boolean isSavedToDatabase();
 }

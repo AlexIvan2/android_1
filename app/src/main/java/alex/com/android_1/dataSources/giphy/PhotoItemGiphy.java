@@ -24,4 +24,20 @@ public class PhotoItemGiphy implements PhotoItem {
         return "";
     }
 
+    @Override
+    public void saveToDatabase() {
+
+    }
+
+    @Override
+    public void deleteFromDatabase() {
+
+    }
+
+    @Override
+    public boolean isSavedToDatabase() {
+        return false;
+    }
+
+
 }

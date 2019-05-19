@@ -14,18 +14,21 @@ import java.util.List;
 
 import alex.com.android_1.catalog.CatalogViewHolder;
 import alex.com.android_1.interfaces.PhotoItem;
+import alex.com.android_1.interfaces.PhotoItemsPresenterCallback;
 
 public class ViewAdapter extends ArrayAdapter {
 
     private Context context;
     private int layoutResourceId;
     private List data;
+    private PhotoItemsPresenterCallback callback;
 
-    public ViewAdapter(Context context, int layoutResourceId, List data) {
+    public ViewAdapter(Context context, int layoutResourceId, List data, PhotoItemsPresenterCallback callback) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.data = data;
+        this.callback = callback;
     }
 
     public List getData() {
