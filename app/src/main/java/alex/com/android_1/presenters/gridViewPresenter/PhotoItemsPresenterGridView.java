@@ -52,7 +52,6 @@ public class PhotoItemsPresenterGridView implements PhotoItemsPresenter {
                 }
 
                 viewHolder.itemViewName.setText(photoItem.getUserName());
-                updateFavoriteButton(viewHolder.buttonFavorite, photoItem, activity);
 
                 viewHolder.buttonFavorite.setOnClickListener(view -> {
                     callback.onItemToggleFavorite(photoItem);
