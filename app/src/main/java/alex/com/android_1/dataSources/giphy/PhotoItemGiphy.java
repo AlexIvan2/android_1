@@ -48,12 +48,15 @@ public class PhotoItemGiphy implements PhotoItem {
 
     @Override
     public void saveToDatabase() {
-
+        // before save - convert inner objects to string
+        this.imagesForORM = images.toString();
+        SugarRecord.save(this);
     }
 
     @Override
     public void deleteFromDatabase() {
-
+        // A small query is needed because of conflicted id properties
+        SugarRecord.deleteAll(PhotoItemGiphy.class,"img_ID = ?", this.imgID);
     }
 
     @Override

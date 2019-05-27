@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import alex.com.android_1.R;
 import alex.com.android_1.catalog.CatalogViewHolder;
 import alex.com.android_1.interfaces.PhotoItem;
 import alex.com.android_1.interfaces.PhotoItemsPresenterCallback;
@@ -46,17 +48,38 @@ public class ViewAdapter extends ArrayAdapter {
         CatalogViewHolder catalogViewHolder = (CatalogViewHolder) convertView.getTag();
         if (catalogViewHolder == null) {
             catalogViewHolder = new CatalogViewHolder(convertView);
-
             convertView.setTag(catalogViewHolder);
         }
 
         PhotoItem photoItem = (PhotoItem) data.get(position);
 //        Picasso.get().load(photoItem.getImgUrl()).into(catalogViewHolder.itemViewImage);
+        //set favorite button behaviour
+        CatalogViewHolder finalcatalogViewHolder = catalogViewHolder;
+        updateFavoriteButton(catalogViewHolder.buttonFavorite, photoItem);
+        catalogViewHolder.buttonFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback.onItemToggleFavorite(photoItem);//save to DB!!!!
+                updateFavoriteButton(finalcatalogViewHolder.buttonFavorite, photoItem);
+            }
+        });
+
         Glide.with(convertView).load(photoItem.getImgUrl()).into(catalogViewHolder.itemViewImage);
         catalogViewHolder.itemViewName.setText(photoItem.getUserName());
         catalogViewHolder.itemViewLocation.setText(photoItem.getLocation());
 //        .setImageDrawable(carObject.getImage());
 //        catalogViewHolder.itemViewName.setText(carObject.getName());
         return convertView;
+    }
+
+    private void updateFavoriteButton(ImageButton imageButton, PhotoItem photoItem) {
+//        boolean isFavorited = SharedPreferencesHelper.isFavorited(photoItem.getID(), context);
+
+        boolean isFavorited = photoItem.isSavedToDatabase();
+        if (isFavorited) {
+            imageButton.setImageResource(R.drawable.favorite_on);
+        } else {
+            imageButton.setImageResource(R.drawable.favorite_off);
+        }
     }
 }

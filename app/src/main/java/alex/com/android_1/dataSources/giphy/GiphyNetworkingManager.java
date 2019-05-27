@@ -41,7 +41,7 @@ public class GiphyNetworkingManager implements NetworkingManager {
                 .url(GIPHY_URL)
                 .build();
 
-        final Gson gson = new Gson();
+
         OkHttpClient client = new OkHttpClient();
         JsonParser parser = new JsonParser();
 
@@ -49,6 +49,7 @@ public class GiphyNetworkingManager implements NetworkingManager {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
+                final Gson gson = new Gson();
                 try {
                     String jsonString = response.body().string();
 

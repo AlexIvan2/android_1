@@ -2,6 +2,7 @@ package alex.com.android_1.catalog;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -30,6 +31,9 @@ import alex.com.android_1.presenters.gridViewPresenter.PhotoItemsPresenterGridVi
 import static android.os.Environment.getExternalStorageDirectory;
 
 public class CatalogGridViewActivity extends Activity implements PhotoItemsPresenterCallback {
+
+    private static String IMAGE_PROVIDER_KEY = "IMAGE_PROVIDER_KEY";
+    private static String PRESENTER_KEY = "PRESENTER_KEY";
 
     NetworkingManager networkingManager = null;
     PhotoItemsPresenter presenter = null;
@@ -80,6 +84,10 @@ public class CatalogGridViewActivity extends Activity implements PhotoItemsPrese
                 break;
         }
 
+        getImages();
+    }
+
+    private void getImages() {
         presenter = new PhotoItemsPresenterGridView();
         networkingManager.getPhotoItems(photoItems ->
                 runOnUiThread(()-> presenter.setupWithPhotoItems(photoItems,this, this))
@@ -97,7 +105,7 @@ public class CatalogGridViewActivity extends Activity implements PhotoItemsPrese
     public void onItemToggleFavorite(PhotoItem item) {
         if (item.isSavedToDatabase()) {
             item.deleteFromDatabase();
-//            getImages();
+            getImages();
         } else {
             item.saveToDatabase();
         }
