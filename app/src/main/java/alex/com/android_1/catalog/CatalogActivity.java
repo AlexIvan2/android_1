@@ -2,41 +2,39 @@ package alex.com.android_1.catalog;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.List;
 
 import alex.com.android_1.R;
 import alex.com.android_1.ShareActivityWithFragment;
 import alex.com.android_1.dataSources.giphy.GiphyNetworkingManager;
-import alex.com.android_1.interfaces.NetworkingResultListener;
 import alex.com.android_1.interfaces.NetworkingManager;
 import alex.com.android_1.dataSources.unsplash.UnsplashNetworkingManager;
 import alex.com.android_1.interfaces.PhotoItem;
 import alex.com.android_1.interfaces.PhotoItemsPresenter;
 import alex.com.android_1.interfaces.PhotoItemsPresenterCallback;
 import alex.com.android_1.presenters.gridViewPresenter.PhotoItemsPresenterGridView;
+import alex.com.android_1.presenters.recyclerViewPresenters.PhotoItemsPresenterRecyclerView;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
-public class CatalogGridViewActivity extends Activity implements PhotoItemsPresenterCallback {
+public class CatalogActivity extends Activity implements PhotoItemsPresenterCallback {
 
     private static String IMAGE_PROVIDER_KEY = "IMAGE_PROVIDER_KEY";
     private static String PRESENTER_KEY = "PRESENTER_KEY";
 
     NetworkingManager networkingManager = null;
-    PhotoItemsPresenter presenter = null;
+    PhotoItemsPresenter presenter = new PhotoItemsPresenterRecyclerView();
 
     public enum ImgServices {
         UNSPLASH,
@@ -62,9 +60,16 @@ public class CatalogGridViewActivity extends Activity implements PhotoItemsPrese
         });
 
         final MenuItem showUnsplashMenuItem = menu.findItem(R.id.action_show_unslash);
-        favoriteMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
+        showUnsplashMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
         showUnsplashMenuItem.setOnMenuItemClickListener(menuItem -> {
             showImgService(ImgServices.UNSPLASH);
+            return true;
+        });
+
+        final MenuItem showGiphyMenuItem = menu.findItem(R.id.action_show_giphy);
+        showGiphyMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
+        showGiphyMenuItem.setOnMenuItemClickListener(menuItem -> {
+            showImgService(ImgServices.GIPHY);
             return true;
         });
 
@@ -88,9 +93,8 @@ public class CatalogGridViewActivity extends Activity implements PhotoItemsPrese
     }
 
     private void getImages() {
-        presenter = new PhotoItemsPresenterGridView();
         networkingManager.getPhotoItems(photoItems ->
-                runOnUiThread(()-> presenter.setupWithPhotoItems(photoItems,this, this))
+                runOnUiThread(()-> presenter.showPhotoItems(photoItems,this, this))
         );
     }
 
@@ -105,7 +109,6 @@ public class CatalogGridViewActivity extends Activity implements PhotoItemsPrese
     public void onItemToggleFavorite(PhotoItem item) {
         if (item.isSavedToDatabase()) {
             item.deleteFromDatabase();
-            getImages();
         } else {
             item.saveToDatabase();
         }
@@ -113,7 +116,9 @@ public class CatalogGridViewActivity extends Activity implements PhotoItemsPrese
 
     @Override
     public void onLastItemReach(int position) {
-
+        networkingManager.fetchNewItemsFromPosition(position, photoItems -> {
+            runOnUiThread(()-> presenter.updateWithItems(photoItems));
+        });
     }
 
     // *****************************************************
@@ -176,6 +181,6 @@ public class CatalogGridViewActivity extends Activity implements PhotoItemsPrese
 //
 //    @Override
 //    public void onPhotoItemsCompleteCallback(List<PhotoItem> photoItemUnsplashes) {
-//        runOnUiThread(() -> presenter.setupWithPhotoItems(this, photoItemUnsplashes, this));
+//        runOnUiThread(() -> presenter.showPhotoItems(this, photoItemUnsplashes, this));
 //    }
 }

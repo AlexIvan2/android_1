@@ -33,10 +33,6 @@ public class ViewAdapter extends ArrayAdapter {
         this.callback = callback;
     }
 
-    public List getData() {
-        return data;
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

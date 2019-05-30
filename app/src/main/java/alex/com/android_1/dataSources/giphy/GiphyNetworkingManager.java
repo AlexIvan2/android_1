@@ -24,10 +24,10 @@ import okhttp3.Response;
 
 public class GiphyNetworkingManager implements NetworkingManager {
 
-    private static final String GIPHY_URL = "https://api.giphy.com/v1/stickers/trending?api_key=VvyONhZ6eUFDFtuwg7w9tUYXzgefYdYy&limit=25&rating=G";
 
     private List<PhotoItem> photoItems = new ArrayList<>();
-
+    private int limit = 50;
+    private int offset = 0;
     private boolean requestInProgress = false;
 
     @Override
@@ -38,13 +38,10 @@ public class GiphyNetworkingManager implements NetworkingManager {
     private void getImages(NetworkingResultListener listener) {
 
         Request request = new Request.Builder()
-                .url(GIPHY_URL)
+                .url("https://api.giphy.com/v1/stickers/trending?api_key=VvyONhZ6eUFDFtuwg7w9tUYXzgefYdYy&limit=" + limit + "&offset=" + offset + "&rating=G")
                 .build();
 
-
         OkHttpClient client = new OkHttpClient();
-        JsonParser parser = new JsonParser();
-
         requestInProgress = true;
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -84,7 +81,14 @@ public class GiphyNetworkingManager implements NetworkingManager {
 
     @Override
     public void fetchNewItemsFromPosition(int lastPosition, NetworkingResultListener result) {
-
+        if (requestInProgress) {
+            return;
+        }
+        if (offset <= lastPosition) {
+            requestInProgress = true;
+            offset += limit;
+            getPhotoItems(result);
+        }
     }
 
 //    @Override

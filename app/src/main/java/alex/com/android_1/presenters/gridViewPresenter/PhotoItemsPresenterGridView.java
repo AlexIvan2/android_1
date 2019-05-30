@@ -18,7 +18,7 @@ public class PhotoItemsPresenterGridView implements PhotoItemsPresenter {
     private ViewAdapter adapter;
 
     @Override
-    public void setupWithPhotoItems(List<PhotoItem> photoItems, Activity activity, PhotoItemsPresenterCallback callback) {
+    public void showPhotoItems(List<PhotoItem> photoItems, Activity activity, PhotoItemsPresenterCallback callback) {
         this.photoItems = photoItems;
         GridView gridView = new GridView(activity);
         activity.setContentView(gridView);

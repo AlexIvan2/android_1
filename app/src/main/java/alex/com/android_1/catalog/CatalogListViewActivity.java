@@ -31,7 +31,7 @@
 //
 //    @Override
 //    public void onPhotoItemsCompleteCallback(List<PhotoItem> photoItemsGiphy) {
-//        runOnUiThread(() -> presenter.setupWithPhotoItems(this, photoItemsGiphy, this));
+//        runOnUiThread(() -> presenter.showPhotoItems(this, photoItemsGiphy, this));
 //    }
 //
 //    @Override

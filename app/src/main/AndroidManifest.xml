@@ -29,7 +29,8 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="alex.com.android_1" />
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".catalog.CatalogActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,10 +39,8 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity2" />
-        <activity
-            android:name=".RegistrationActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".catalog.CatalogGridViewActivity" />
+        <activity android:name=".RegistrationActivity"/>
+        <activity android:name=".LoginActivity" />
         <!-- <activity android:name=".catalog.CatalogListViewActivity" /> -->
         <activity android:name=".MenuActivity" />
         <activity android:name=".ShareActivity" />

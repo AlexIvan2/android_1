@@ -12,7 +12,7 @@
 //import java.util.List;
 //
 //import alex.com.android_1.R;
-//import alex.com.android_1.catalog.CatalogGridViewActivity;
+//import alex.com.android_1.catalog.CatalogActivity;
 //import alex.com.android_1.interfaces.NetworkingManager;
 //import alex.com.android_1.interfaces.PhotoItem;
 //import alex.com.android_1.interfaces.PhotoItemsPresenter;
@@ -34,11 +34,11 @@
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        showImgService(CatalogGridViewActivity.ImgServices.GIPHY);
+//        showImgService(CatalogActivity.ImgServices.GIPHY);
 //    }
 //
 //    @Override
-//    public void setupWithPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback) {
+//    public void showPhotoItems(Activity activity, List<PhotoItem> photoItems, PhotoItemsPresenterCallback callback) {
 //        ListView resultView = activity.findViewById(R.id.catalogListView);
 ////        ViewAdapter adapter = new ViewAdapter(activity, R.layout.photo_item, photoItems);
 ////        resultView.setAdapter(adapter);
@@ -47,7 +47,7 @@
 //    }
 //
 //    @Override
-//    public void setupWithPhotoItems(List<PhotoItem> photoItems, Activity activity, PhotoItemsPresenterCallback callback) {
+//    public void showPhotoItems(List<PhotoItem> photoItems, Activity activity, PhotoItemsPresenterCallback callback) {
 //
 //    }
 //

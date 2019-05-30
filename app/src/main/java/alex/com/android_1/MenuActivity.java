@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import alex.com.android_1.catalog.CatalogGridViewActivity;
+import alex.com.android_1.catalog.CatalogActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -16,7 +16,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onPhotosClick(View view) {
-        Intent intent = new Intent(MenuActivity.this, CatalogGridViewActivity.class);
+        Intent intent = new Intent(MenuActivity.this, CatalogActivity.class);
         startActivity(intent);
     }
 
